@@ -5,6 +5,7 @@ package com.mahipal.core.data.datasource
  */
 interface OnViewUpdate {
     fun setTextOnButton(row:Int,column:Int,ticTacToePlayer:String)
+    fun setLabelToView(text:String)
     fun resetButtons()
     fun createOverlay(strMessage: String)
     fun setTxtPlayerScore(i: Int)

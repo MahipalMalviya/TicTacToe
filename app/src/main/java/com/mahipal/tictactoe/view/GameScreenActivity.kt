@@ -52,6 +52,10 @@ class GameScreenActivity : AppCompatActivity(), OnViewUpdate {
         else if (row == 2 && column==2) btn_BR.text = ticTacToePlayer
     }
 
+    override fun setLabelToView(text: String) {
+        Toast.makeText(this,text,Toast.LENGTH_SHORT).show()
+    }
+
     override fun resetButtons() {
         val blank = ""
 
