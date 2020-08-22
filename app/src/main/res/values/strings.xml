@@ -3,4 +3,5 @@
     <string name="txtplayer">Player 1 :</string>
     <string name="zero">0</string>
     <string name="cpu">Player 2 :</string>
+    <string name="_zero">0</string>
 </resources>

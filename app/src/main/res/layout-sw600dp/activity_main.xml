@@ -1,144 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.GameScreenActivity">
+<layout>
 
-    <RelativeLayout
-        android:id="@+id/rl_player_profile"
+    <data>
+
+        <variable
+            name="ticTacToeViewModel"
+            type="com.mahipal.tictactoe.viewModel.TicTacToeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/tl_board"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        tools:context=".view.GameScreenActivity">
 
-        <TextView
-            android:id="@+id/tv_player"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPlayer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
             android:text="@string/txtplayer"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/tlBoard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_player_score"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPlayerScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/tv_player"
-            android:text=" 0"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:layout_marginTop="32dp"
+            android:layout_toEndOf="@+id/tvPlayer"
+            android:text="@{ticTacToeViewModel.playerScore}"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/tlBoard"
+            app:layout_constraintStart_toEndOf="@+id/tvPlayer"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_cpu"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCpu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toStartOf="@+id/tv_cpu_score"
+            android:layout_marginTop="32dp"
+            android:layout_toStartOf="@+id/tvCpuScore"
             android:text="@string/cpu"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/tlBoard"
+            app:layout_constraintEnd_toStartOf="@+id/tvCpuScore"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_cpu_score"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCpuScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:text=" 0"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-    </RelativeLayout>
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:text="@{ticTacToeViewModel.player1Score}"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/tlBoard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TableLayout
-        android:id="@+id/tl_board"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        <TableLayout
+            android:id="@+id/tlBoard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/btn_TL"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:layout_column="0"
-                android:layout_weight="0"
-                android:textSize="50sp" />
-
-            <Button
-                android:id="@+id/btn_TM"
-                android:layout_width="130dp"
-                android:layout_height="match_parent"
-                android:layout_column="1"
-                android:textSize="50sp" />
-
-            <Button
-                android:id="@+id/btn_TR"
-                android:layout_width="140dp"
-                android:layout_height="match_parent"
-                android:layout_column="2"
-                android:textSize="50sp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:id="@+id/btn_ML"
-                android:layout_column="0"
-                android:textSize="50sp" />
-
-            <Button
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/btn_MM"
-                android:layout_column="1"
-                android:textSize="50sp" />
+                android:layout_height="match_parent">
 
-            <Button
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnTL"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_column="0"
+                    android:layout_weight="0"
+                    android:onClick="@{() -> ticTacToeViewModel.buttonClicked(0,0)}"
+                    android:text="@{ticTacToeViewModel.btnTopLeft}"
+                    android:textSize="50sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnTM"
+                    android:layout_width="130dp"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:onClick="@{() -> ticTacToeViewModel.buttonClicked(1,0)}"
+                    android:text="@{ticTacToeViewModel.btnTopMiddle}"
+                    android:textSize="50sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnTR"
+                    android:layout_width="140dp"
+                    android:layout_height="match_parent"
+                    android:layout_column="2"
+                    android:onClick="@{() -> ticTacToeViewModel.buttonClicked(2,0)}"
+                    android:text="@{ticTacToeViewModel.btnTopRight}"
+                    android:textSize="50sp" />
+            </TableRow>
+
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/btn_MR"
-                android:layout_column="2"
-                android:textSize="50sp" />
-        </TableRow>
+                android:layout_height="match_parent">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnML"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_column="0"
+                    android:onClick="@{() -> ticTacToeViewModel.buttonClicked(0,1)}"
+                    android:text="@{ticTacToeViewModel.btnMiddleLeft}"
+                    android:textSize="50sp" />
 
-            <Button
-                android:id="@+id/btn_BL"
-                android:layout_column="0"
-                android:layout_height="130dp"
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnMM"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:onClick="@{() -> ticTacToeViewModel.buttonClicked(1,1)}"
+                    android:text="@{ticTacToeViewModel.btnMiddleMiddle}"
+                    android:textSize="50sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnMR"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_column="2"
+                    android:onClick="@{() -> ticTacToeViewModel.buttonClicked(2,1)}"
+                    android:text="@{ticTacToeViewModel.btnMiddleRight}"
+                    android:textSize="50sp" />
+            </TableRow>
+
+            <TableRow
                 android:layout_width="match_parent"
-                android:textSize="50sp" />
+                android:layout_height="match_parent">
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/btn_BM"
-                android:layout_column="1"
-                android:textSize="50sp" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnBL"
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp"
+                    android:layout_column="0"
+                    android:onClick="@{() -> ticTacToeViewModel.buttonClicked(0,2)}"
+                    android:text="@{ticTacToeViewModel.btnBottomLeft}"
+                    android:textSize="50sp" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/btn_BR"
-                android:layout_column="2"
-                android:textSize="50sp" />
-        </TableRow>
-    </TableLayout>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnBM"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:onClick="@{() -> ticTacToeViewModel.buttonClicked(1,2)}"
+                    android:text="@{ticTacToeViewModel.btnBottomMiddle}"
+                    android:textSize="50sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnBR"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_column="2"
+                    android:onClick="@{() -> ticTacToeViewModel.buttonClicked(2,2)}"
+                    android:text="@{ticTacToeViewModel.btnBottomRight}"
+                    android:textSize="50sp" />
+            </TableRow>
+        </TableLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
